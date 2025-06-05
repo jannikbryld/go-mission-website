@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
+    pull_policy: build
     ports:
       - "9639:3000"
     environment:
