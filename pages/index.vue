@@ -64,7 +64,7 @@
           
           <!-- Simplified Visual Element -->
           <div class="lg:justify-self-end">
-            <div class="relative max-w-xs mx-auto">
+            <div class="relative w-full max-w-[280px] mx-auto">
               <!-- iPhone Mockup -->
               <div class="relative">
                 <!-- iPhone Frame -->
@@ -75,17 +75,17 @@
                     <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-4 bg-black rounded-b-xl z-10"></div>
                     
                     <!-- App Interface Image -->
-                    <div class="relative h-[450px] w-[225px]">
+                    <div class="relative aspect-[225/450] w-full min-w-[225px]">
                       <img 
-                        src="/images/hero/super-godt-app.webp" 
-                        alt="Go Mission - Super godt interface" 
+                        src="/images/app/mindag.png" 
+                        alt="Go Mission - Min dag interface" 
                         class="w-full h-full object-cover"
                       />
                       
                       <!-- Overlay for better branding -->
                       <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-transparent to-transparent p-4">
                         <div class="text-center">
-                          <h3 class="text-white font-bold text-base mb-1">Go Mission</h3>
+                          <h3 class="text-white font-bold text-base mb-1">&nbsp;</h3>
                           <p class="text-white/90 text-xs">Digital velfærdsløsning</p>
                         </div>
                       </div>
@@ -281,8 +281,9 @@
             </h2>
             <div class="space-y-8">
               <div class="flex items-start gap-4">
-                <div class="icon-modern icon-benefit w-16 h-16 flex-shrink-0">
-                  <Icon name="heroicons:arrow-trending-up" class="h-10 w-10 text-white" />
+                <div class="relative icon-modern icon-benefit w-16 h-16 flex-shrink-0 group">
+                  <Icon name="heroicons:arrow-trending-up" class="h-12 w-12 text-white relative z-10" />
+                  <div class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse"></div>
                 </div>
                 <div>
                   <h3 class="text-xl font-bold mb-3 text-gray-900">Øget selvhjulpenhed</h3>
@@ -294,8 +295,9 @@
               </div>
               
               <div class="flex items-start gap-4">
-                <div class="icon-modern icon-feature w-16 h-16 flex-shrink-0">
-                  <Icon name="heroicons:user-group" class="h-10 w-10 text-white" />
+                <div class="relative icon-modern icon-feature w-16 h-16 flex-shrink-0 group">
+                  <Icon name="heroicons:users" class="h-12 w-12 text-white relative z-10" />
+                  <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse" style="animation-delay: 0.5s;"></div>
                 </div>
                 <div>
                   <h3 class="text-xl font-bold mb-3 text-gray-900">Bedre støtte</h3>
@@ -307,8 +309,10 @@
               </div>
               
               <div class="flex items-start gap-4">
-                <div class="icon-modern w-16 h-16 flex-shrink-0">
-                  <Icon name="heroicons:heart" class="h-10 w-10 text-white" />
+                <div class="relative icon-modern w-16 h-16 flex-shrink-0 group">
+                  <Icon name="heroicons:heart" class="h-12 w-12 text-white relative z-10" />
+                  <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-red-500 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse" style="animation-delay: 1s;"></div>
+                  <div class="absolute -inset-1 bg-gradient-to-br from-pink-400/20 to-red-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
                 </div>
                 <div>
                   <h3 class="text-xl font-bold mb-3 text-gray-900">Ro og sammenhæng</h3>
@@ -371,66 +375,156 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="card-modern text-center group">
-            <div class="icon-modern icon-feature mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Icon name="heroicons:calendar-days" class="h-8 w-8 text-white" />
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Min dag</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Brugerens daglige kalender. Her kan den enkelte holde styr på sine daglige gøremål. 
-              Kalenderen skaber en tydelig struktur over hverdagens opgaver.
-            </p>
-            <div class="mt-6 pt-6 border-t border-gray-100">
-              <div class="app-mockup h-32 relative overflow-hidden">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-center">
-                    <Icon name="heroicons:calendar-days" class="h-12 w-12 text-white mb-2" />
-                    <div class="text-white text-sm font-medium">Dagens Plan</div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Min dag -->
+          <div class="group">
+            <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <!-- Header with centered title and corner icon -->
+              <div class="relative p-8 pb-6">
+                <!-- Corner icon -->
+                <div class="absolute top-6 right-6">
+                  <div class="relative w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Icon name="heroicons:calendar-days" class="h-6 w-6 text-white" />
+                  </div>
+                </div>
+                
+                <!-- Centered title -->
+                <div class="text-center mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900">Min dag</h3>
+                </div>
+                
+                <p class="text-gray-600 leading-relaxed">
+                  Brugerens daglige kalender. Her kan den enkelte holde styr på sine daglige gøremål. 
+                  Kalenderen skaber en tydelig struktur over hverdagens opgaver.
+                </p>
+              </div>
+              
+              <!-- Phone mockup area -->
+              <div class="px-8 pb-8">
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 flex justify-center">
+                  <div class="relative bg-black rounded-3xl p-2 w-[180px] shadow-xl group-hover:scale-105 transition-transform duration-300">
+                    <div class="bg-white rounded-2xl overflow-hidden relative">
+                      <!-- Notch -->
+                      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-2.5 bg-black rounded-b-lg z-10"></div>
+                      
+                      <!-- App Screenshot -->
+                      <div class="relative aspect-[9/19.5] w-full">
+                        <img 
+                          src="/images/app/mindag.png" 
+                          alt="Min dag - App screenshot" 
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    
+                    <!-- Phone shine effect -->
+                    <div class="absolute inset-2 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card-modern text-center group">
-            <div class="icon-modern mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Icon name="heroicons:trophy" class="h-8 w-8 text-white" />
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Mission</h3>
-            <p class="text-gray-600 leading-relaxed">
-              En ny måde at planlægge målsættende udvikling for den enkelte borger. 
-              Gør brugerens udviklingsmål tydelige og integrerer aktiviteter i kalenderen.
-            </p>
-            <div class="mt-6 pt-6 border-t border-gray-100">
-              <div class="app-mockup h-32 relative overflow-hidden bg-gradient-to-br from-orange-400 to-red-500">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-center">
-                    <Icon name="heroicons:trophy" class="h-12 w-12 text-white mb-2" />
-                    <div class="text-white text-sm font-medium">Udvikling</div>
+          <!-- Mission -->
+          <div class="group">
+            <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <!-- Header with centered title and corner icon -->
+              <div class="relative p-8 pb-6">
+                <!-- Corner icon with accent -->
+                <div class="absolute top-6 right-6">
+                  <div class="relative w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <img 
+                      src="/images/logo/logo_white.png" 
+                      alt="Go Mission Logo" 
+                      class="h-7 w-7 object-contain"
+                    />
+                    <!-- Small accent dot -->
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                
+                <!-- Centered title -->
+                <div class="text-center mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900">Mission</h3>
+                </div>
+                
+                <p class="text-gray-600 leading-relaxed">
+                  En ny måde at planlægge målsættende udvikling for den enkelte borger. 
+                  Gør brugerens udviklingsmål tydelige og integrerer aktiviteter i kalenderen.
+                </p>
+              </div>
+              
+              <!-- Phone mockup area -->
+              <div class="px-8 pb-8">
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 flex justify-center">
+                  <div class="relative bg-black rounded-3xl p-2 w-[180px] shadow-xl group-hover:scale-105 transition-transform duration-300">
+                    <div class="bg-white rounded-2xl overflow-hidden relative">
+                      <!-- Notch -->
+                      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-2.5 bg-black rounded-b-lg z-10"></div>
+                      
+                      <!-- App Screenshot -->
+                      <div class="relative aspect-[9/19.5] w-full">
+                        <img 
+                          src="/images/app/mission.png" 
+                          alt="Mission - App screenshot" 
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    
+                    <!-- Phone shine effect -->
+                    <div class="absolute inset-2 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card-modern text-center group">
-            <div class="icon-modern icon-benefit mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Icon name="heroicons:book-open" class="h-8 w-8 text-white" />
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Guides</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Trin for trin og liste guides der kan tilføjes til alle begivenheder. 
-              Kan guide brugeren gennem aktiviteter understøttet af billeder og video.
-              <br>
-              <br>
-            </p>
-            <div class="mt-6 pt-6 border-t border-gray-100">
-              <div class="app-mockup h-32 relative overflow-hidden bg-gradient-to-br from-emerald-400 to-teal-500">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-center">
-                    <Icon name="heroicons:book-open" class="h-12 w-12 text-white mb-2" />
-                    <div class="text-white text-sm font-medium">Trin-for-Trin</div>
+          <!-- Guides -->
+          <div class="group">
+            <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <!-- Header with centered title and corner icon -->
+              <div class="relative p-8 pb-6">
+                <!-- Corner icon with accent -->
+                <div class="absolute top-6 right-6">
+                  <div class="relative w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Icon name="heroicons:book-open" class="h-6 w-6 text-white" />
+                    <!-- Small accent dot -->
+                    <div class="absolute -top-1 -left-1 w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
+                  </div>
+                </div>
+                
+                <!-- Centered title -->
+                <div class="text-center mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900">Guides</h3>
+                </div>
+                
+                <p class="text-gray-600 leading-relaxed">
+                  Trin for trin og liste guides der kan tilføjes til alle begivenheder. 
+                  Kan guide brugeren gennem aktiviteter understøttet af billeder og video.
+                </p>
+              </div>
+              
+              <!-- Phone mockup area -->
+              <div class="px-8 pb-8">
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 flex justify-center">
+                  <div class="relative bg-black rounded-3xl p-2 w-[180px] shadow-xl group-hover:scale-105 transition-transform duration-300">
+                    <div class="bg-white rounded-2xl overflow-hidden relative">
+                      <!-- Notch -->
+                      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-2.5 bg-black rounded-b-lg z-10"></div>
+                      
+                      <!-- App Screenshot -->
+                      <div class="relative aspect-[9/19.5] w-full">
+                        <img 
+                          src="/images/app/guides.png" 
+                          alt="Guides - App screenshot" 
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    
+                    <!-- Phone shine effect -->
+                    <div class="absolute inset-2 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"></div>
                   </div>
                 </div>
               </div>
@@ -523,7 +617,7 @@
                   </svg>
                 </div>
                 <div class="flex-1 text-left">
-                  <div class="text-xs text-gray-300 uppercase tracking-wide">Få det på</div>
+                  <div class="text-xs text-gray-300 uppercase tracking-wide">Download på</div>
                   <div class="text-xl font-bold">Google Play</div>
                 </div>
                 <Icon name="heroicons:arrow-top-right-on-square" class="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -726,69 +820,25 @@
         </div>
 
         <!-- Partner Logos Grid -->
-        <div class="grid grid-cols-3 md:grid-cols-3 gap-6 lg:gap-8 items-center">
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor1.jpg" 
-              alt="Samarbejdspartner 1" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor3.jpg" 
-              alt="Samarbejdspartner 2" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor4.jpg" 
-              alt="Samarbejdspartner 3" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor5.jpg" 
-              alt="Samarbejdspartner 4" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor7.jpg" 
-              alt="Samarbejdspartner 5" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/sponsor8.jpg" 
-              alt="Samarbejdspartner 6" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/image.png" 
-              alt="Samarbejdspartner 7" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/image-1.png" 
-              alt="Samarbejdspartner 8" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
-          </div>
-          <div class="flex justify-center">
-            <img 
-              src="/images/references/image-2.png" 
-              alt="Samarbejdspartner 9" 
-              class="h-20 lg:h-28 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-            />
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12 items-center">
+          <div 
+            v-for="partner in partners" 
+            :key="partner.id"
+            class="flex justify-center"
+          >
+            <a 
+              :href="partner.url" 
+              :target="partner.url ? '_blank' : '_self'"
+              :rel="partner.url ? 'noopener noreferrer' : ''"
+              class="block transition-transform duration-300 hover:scale-105"
+              :class="{ 'cursor-pointer': partner.url, 'cursor-default': !partner.url }"
+            >
+              <img 
+                :src="partner.image" 
+                :alt="partner.name" 
+                class="h-16 sm:h-20 md:h-24 lg:h-32 xl:h-36 w-auto opacity-70 hover:opacity-100 transition-all duration-300 filter grayscale hover:grayscale-0"
+              />
+            </a>
           </div>
         </div>
 
@@ -843,11 +893,69 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: 'Mette Kielsgaard Petersen',
+    name: 'Mette Petersen',
     role: 'Cand.ergo & Konsulent',
     description: 'Specialist i velfærdsteknologi og digitale hjælpemidler med fokus på faglighed',
     image: '/images/team/Mette-tele-call-portraet-980x654.jpg',
     badgeColor: 'text-emerald-600'
+  }
+]
+
+// Partners data
+const partners = [
+  {
+    id: 1,
+    name: 'Samarbejdspartner 1',
+    image: '/images/references/sponsor1.jpg',
+    url: 'https://www.syddansksundhedsinnovation.dk/'
+  },
+  {
+    id: 2,
+    name: 'Samarbejdspartner 2',
+    image: '/images/references/sponsor3.jpg',
+    url: 'https://habitus.dk/'
+  },
+  {
+    id: 3,
+    name: 'Samarbejdspartner 3',
+    image: '/images/references/sponsor4.jpg',
+    url: 'https://www.sdu.dk/da'
+  },
+  {
+    id: 4,
+    name: 'Samarbejdspartner 4',
+    image: '/images/references/sponsor5.jpg',
+    url: 'https://ec.europa.eu/regional_policy/da/funding/erdf/'
+  },
+  {
+    id: 5,
+    name: 'Samarbejdspartner 5',
+    image: '/images/references/sponsor7.jpg',
+    url: 'https://www.danishlifesciencecluster.dk/'
+  },
+  {
+    id: 6,
+    name: 'Samarbejdspartner 6',
+    image: '/images/references/sponsor8.jpg',
+    url: 'https://www.dtu.dk/'
+  },
+  {
+    id: 7,
+    name: 'Samarbejdspartner 7',
+    image: '/images/references/image.png',
+    url: 'https://www.ulf.dk/'
+  },
+  {
+    id: 8,
+    name: 'Samarbejdspartner 8',
+    image: '/images/references/image-1.png',
+    url: 'https://fangelbogaard.dk/'
+  },
+  {
+    id: 9,
+    name: 'Samarbejdspartner 9',
+    image: '/images/references/image-2.png',
+    url: 'https://telecall.dk/'
   }
 ]
 </script> 

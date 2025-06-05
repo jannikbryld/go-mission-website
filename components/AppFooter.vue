@@ -10,11 +10,14 @@
           <!-- Modern Company Info -->
           <div class="lg:col-span-2">
             <div class="flex items-center mb-6">
-              <img 
-                src="/images/logo/logo.png" 
-                alt="Go Mission Logo" 
-                class="h-12 w-auto"
-              />
+              <div class="relative">
+                <img 
+                  src="/images/logo/GoMission_withtext_white.png" 
+                  alt="Go Mission Logo" 
+                  class="h-12 w-auto brightness-0 saturate-100"
+                  style="filter: brightness(0) saturate(100%) invert(75%) sepia(27%) saturate(3148%) hue-rotate(140deg) brightness(95%) contrast(85%);"
+                />
+              </div>
             </div>
             <p class="text-gray-300 mb-8 max-w-md leading-relaxed text-lg">
               Skab en ny og bedre fremtid for mennesker med nedsat kognitiv funktion gennem vores 
