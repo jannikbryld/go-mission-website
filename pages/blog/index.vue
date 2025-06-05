@@ -148,9 +148,61 @@
 <script setup>
 // SEO
 useHead({
-  title: 'Blog - Go Mission',
+  title: 'Blog - Go Mission | Digital Velfærdsteknologi',
   meta: [
-    { name: 'description', content: 'Seneste nyheder, indsigter og historier fra Go Mission rejsen med digital velfærdsteknologi.' }
+    // Basic meta tags
+    { name: 'description', content: 'Seneste nyheder, indsigter og historier fra Go Mission rejsen med digital velfærdsteknologi. Læs om innovation, apps og fremtidens velfærd.' },
+    { name: 'keywords', content: 'go mission, blog, velfærdsteknologi, digital innovation, apps, teknologi, velfærd, fremtiden' },
+    { name: 'author', content: 'Go Mission' },
+    
+    // OpenGraph meta tags (Facebook, LinkedIn)
+    { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: 'Blog - Go Mission | Digital Velfærdsteknologi' },
+    { property: 'og:description', content: 'Seneste nyheder, indsigter og historier fra Go Mission rejsen med digital velfærdsteknologi.' },
+    { property: 'og:url', content: 'https://go-mission.dk/blog' },
+    { property: 'og:site_name', content: 'Go Mission' },
+    { property: 'og:locale', content: 'da_DK' },
+    { property: 'og:image', content: 'https://go-mission.dk/og-blog.jpg' },
+    { property: 'og:image:alt', content: 'Go Mission Blog' },
+    
+    // Twitter Card meta tags
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Blog - Go Mission | Digital Velfærdsteknologi' },
+    { name: 'twitter:description', content: 'Seneste nyheder, indsigter og historier fra Go Mission rejsen med digital velfærdsteknologi.' },
+    { name: 'twitter:image', content: 'https://go-mission.dk/og-blog.jpg' },
+    
+    // SEO optimization
+    { name: 'robots', content: 'index, follow' },
+    { name: 'googlebot', content: 'index, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://go-mission.dk/blog' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: 'Go Mission Blog',
+        description: 'Seneste nyheder, indsigter og historier fra Go Mission rejsen med digital velfærdsteknologi.',
+        url: 'https://go-mission.dk/blog',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Go Mission',
+          url: 'https://go-mission.dk',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://go-mission.dk/logo.png'
+          }
+        },
+        inLanguage: 'da-DK',
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': 'https://go-mission.dk/blog'
+        }
+      })
+    }
   ]
 })
 

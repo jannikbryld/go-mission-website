@@ -163,18 +163,90 @@ const slug = route.params.slug
 const { data: post, pending, error } = await useFetch(`/api/blog/posts/${slug}`)
 
 // SEO
-useHead(() => ({
-  title: post.value ? `${post.value.title} - Go Mission Blog` : 'Blog - Go Mission',
-  meta: [
-    { 
-      name: 'description', 
-      content: post.value?.short_description || post.value?.content?.substring(0, 160) || 'Læs mere på Go Mission blog' 
-    },
-    ...(post.value?.featured_image ? [
-      { property: 'og:image', content: post.value.featured_image }
-    ] : [])
-  ]
-}))
+useHead(() => {
+  const post = unref(post)
+  if (!post) return { title: 'Blog - Go Mission' }
+  
+  const title = `${post.title} - Go Mission Blog`
+  const description = post.short_description || post.content?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Læs mere på Go Mission blog'
+  const url = `https://go-mission.dk/blog/${post.slug}`
+  const publishDate = post.published_date || post.date_created
+  const modifiedDate = post.date_updated || publishDate
+  
+  return {
+    title,
+    meta: [
+      // Basic meta tags
+      { name: 'description', content: description },
+      { name: 'author', content: post.author || 'Go Mission' },
+      { name: 'keywords', content: Array.isArray(post.tags) ? post.tags.join(', ') : (post.tags || 'go mission, velfærd, teknologi, blog') },
+      
+      // OpenGraph meta tags (Facebook, LinkedIn)
+      { property: 'og:type', content: 'article' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
+      { property: 'og:url', content: url },
+      { property: 'og:site_name', content: 'Go Mission' },
+      { property: 'og:locale', content: 'da_DK' },
+      ...(post.featured_image ? [{ property: 'og:image', content: post.featured_image }] : []),
+      ...(post.featured_image ? [{ property: 'og:image:alt', content: post.title }] : []),
+      
+      // Twitter Card meta tags
+      { name: 'twitter:card', content: post.featured_image ? 'summary_large_image' : 'summary' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      ...(post.featured_image ? [{ name: 'twitter:image', content: post.featured_image }] : []),
+      
+      // Article meta tags
+      { property: 'article:published_time', content: publishDate },
+      { property: 'article:modified_time', content: modifiedDate },
+      { property: 'article:author', content: post.author || 'Go Mission' },
+      { property: 'article:section', content: post.category || 'Blog' },
+      ...(Array.isArray(post.tags) ? post.tags.map(tag => ({ property: 'article:tag', content: tag })) : []),
+      
+      // SEO optimization
+      { name: 'robots', content: 'index, follow' },
+      { name: 'googlebot', content: 'index, follow' }
+    ],
+    link: [
+      { rel: 'canonical', href: url }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: description,
+          image: post.featured_image ? [post.featured_image] : undefined,
+          author: {
+            '@type': 'Organization',
+            name: post.author || 'Go Mission',
+            url: 'https://go-mission.dk'
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Go Mission',
+            url: 'https://go-mission.dk',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://go-mission.dk/logo.png'
+            }
+          },
+          datePublished: publishDate,
+          dateModified: modifiedDate,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': url
+          },
+          keywords: Array.isArray(post.tags) ? post.tags.join(', ') : (post.tags || 'go mission, velfærd, teknologi'),
+          articleSection: post.category || 'Blog'
+        })
+      }
+    ]
+  }
+})
 
 // Helper functions
 
