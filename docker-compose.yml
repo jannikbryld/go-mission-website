@@ -13,6 +13,7 @@ services:
       - NODE_ENV=production
       - NITRO_HOST=0.0.0.0
       - NITRO_PORT=3000
+      - DIRECTUS_URL=http://directus:8055
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
@@ -22,7 +23,48 @@ services:
       interval: 30s
     networks:
       - go-mission-network
+    depends_on:
+      - directus
+
+  # Directus CMS
+  directus:
+    container_name: go-mission-directus
+    image: directus/directus:11.8.0
+    ports:
+      - "9640:8055"
+    volumes:
+      - directus_data:/directus/uploads
+      - directus_database:/directus/database
+    environment:
+      KEY: '255d861b-5ea1-5996-9aa3-922530ec40b1'
+      SECRET: '6116487b-cda1-52c2-b5b5-c8022c45e263'
+      
+      # Database
+      DB_CLIENT: 'sqlite3'
+      DB_FILENAME: '/directus/database/data.db'
+      
+      # Admin user (change these!)
+      ADMIN_EMAIL: 'admin@go-mission.dk'
+      ADMIN_PASSWORD: 'changeme123!'
+      
+      # General settings
+      PUBLIC_URL: 'http://localhost:9640'
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'http://localhost:9639,http://localhost:3000'
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8055/server/health"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+      interval: 30s
+    networks:
+      - go-mission-network
 
 networks:
   go-mission-network:
-    driver: bridge 
+    driver: bridge
+
+volumes:
+  directus_data:
+  directus_database: 
