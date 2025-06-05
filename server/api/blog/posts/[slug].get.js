@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
         }
 
         // Transform the data to use public URLs for images
-        const publicDirectusUrl = 'http://localhost:9640'
+        const publicDirectusUrl = process.env.DIRECTUS_URL || 'http://localhost:9640'
 
         return {
             ...post,
