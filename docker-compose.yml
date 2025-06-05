@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  go-mission-app:
+  go-mission-website:
+    container_name: go-mission-website
     build:
       context: .
       dockerfile: Dockerfile
