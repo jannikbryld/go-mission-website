@@ -42,5 +42,21 @@ export default defineNuxtConfig({
   image: {
     quality: 80,
     format: ['webp']
+  },
+
+  // Runtime configuration
+  runtimeConfig: {
+    // Private keys (only available on server-side)AddDocumentAsync
+    emailPassword: process.env.EMAIL_PASSWORD || 'CWV4fza*afa3pyh0vpw',
+    emailFrom: process.env.EMAIL_FROM || 'kontakt-formular@go-mission.com',
+    emailTo: process.env.EMAIL_TO || 'info@go-mission.com',
+    smtpHost: process.env.SMTP_HOST || 'smtp.simply.com',
+    smtpPort: process.env.SMTP_PORT || '587',
+    smtpUser: process.env.SMTP_USER || 'kontakt-formular@go-mission.com',
+
+    // Public keys (exposed to client-side)
+    public: {
+      directusUrl: process.env.DIRECTUS_URL || 'https://cms.bryld.dev'
+    }
   }
 })

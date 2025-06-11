@@ -37,7 +37,7 @@
             </div>
           </a>
           
-          <a href="mailto:info@go-mission.dk" class="group bg-white/5 backdrop-blur-sm border-2 border-gray-600/50 hover:border-teal-400/50 text-white hover:text-teal-300 font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:bg-white/10">
+          <a href="mailto:info@go-mission.com" class="group bg-white/5 backdrop-blur-sm border-2 border-gray-600/50 hover:border-teal-400/50 text-white hover:text-teal-300 font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:bg-white/10">
             <div class="flex items-center justify-center">
               <Icon name="heroicons:envelope" class="h-6 w-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
               Send email
@@ -88,8 +88,8 @@
                   <div class="flex-1">
                     <h3 class="font-bold text-xl mb-2 text-gray-900">Send en email</h3>
                     <p class="text-gray-600 mb-3">Vi svarer inden for 24 timer</p>
-                    <a href="mailto:info@go-mission.dk" class="text-xl font-semibold text-teal-600 hover:text-teal-700 transition-colors break-all">
-                      info@go-mission.dk
+                    <a href="mailto:info@go-mission.com" class="text-xl font-semibold text-teal-600 hover:text-teal-700 transition-colors break-all">
+                      info@go-mission.com
                     </a>
                   </div>
                 </div>
@@ -140,7 +140,29 @@
               
               <!-- Form Content -->
               <div class="p-8 lg:p-12">
-                <form class="space-y-8">
+                <!-- Success Message -->
+                <div v-if="formStatus === 'success'" class="mb-8 p-6 bg-green-50 border border-green-200 rounded-2xl">
+                  <div class="flex items-center">
+                    <Icon name="heroicons:check-circle" class="h-8 w-8 text-green-600 mr-3" />
+                    <div>
+                      <h3 class="text-lg font-semibold text-green-800">Besked sendt!</h3>
+                      <p class="text-green-700">Tak for din henvendelse. Vi vender tilbage inden for 24 timer.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Error Message -->
+                <div v-if="formStatus === 'error'" class="mb-8 p-6 bg-red-50 border border-red-200 rounded-2xl">
+                  <div class="flex items-center">
+                    <Icon name="heroicons:exclamation-circle" class="h-8 w-8 text-red-600 mr-3" />
+                    <div>
+                      <h3 class="text-lg font-semibold text-red-800">Der opstod en fejl</h3>
+                      <p class="text-red-700">{{ errorMessage || 'Prøv igen senere eller ring til os på +45 44 12 44 11' }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <form @submit.prevent="submitForm" class="space-y-8">
                   <!-- Name Fields -->
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="group">
@@ -151,10 +173,11 @@
                         <input
                           type="text"
                           id="firstName"
-                          name="firstName"
+                          v-model="form.firstName"
                           class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-300 text-lg group-hover:border-gray-300"
                           placeholder="Dit fornavn"
                           required
+                          :disabled="isSubmitting"
                         >
                         <div class="absolute inset-y-0 right-0 flex items-center pr-6">
                           <Icon name="heroicons:user" class="h-5 w-5 text-gray-400" />
@@ -170,10 +193,11 @@
                         <input
                           type="text"
                           id="lastName"
-                          name="lastName"
+                          v-model="form.lastName"
                           class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-300 text-lg group-hover:border-gray-300"
                           placeholder="Dit efternavn"
                           required
+                          :disabled="isSubmitting"
                         >
                         <div class="absolute inset-y-0 right-0 flex items-center pr-6">
                           <Icon name="heroicons:user" class="h-5 w-5 text-gray-400" />
@@ -191,10 +215,11 @@
                       <input
                         type="email"
                         id="email"
-                        name="email"
+                        v-model="form.email"
                         class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-300 text-lg group-hover:border-gray-300"
                         placeholder="din@email.dk"
                         required
+                        :disabled="isSubmitting"
                       >
                       <div class="absolute inset-y-0 right-0 flex items-center pr-6">
                         <Icon name="heroicons:envelope" class="h-5 w-5 text-gray-400" />
@@ -211,9 +236,10 @@
                       <input
                         type="text"
                         id="organization"
-                        name="organization"
+                        v-model="form.organization"
                         class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-300 text-lg group-hover:border-gray-300"
                         placeholder="Hvor arbejder du?"
+                        :disabled="isSubmitting"
                       >
                       <div class="absolute inset-y-0 right-0 flex items-center pr-6">
                         <Icon name="heroicons:building-office" class="h-5 w-5 text-gray-400" />
@@ -228,11 +254,12 @@
                     </label>
                     <textarea
                       id="message"
-                      name="message"
+                      v-model="form.message"
                       rows="6"
                       class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-300 text-lg resize-none group-hover:border-gray-300"
                       placeholder="Fortæl os om jeres behov og hvordan vi kan hjælpe jer med at skabe en bedre fremtid sammen..."
                       required
+                      :disabled="isSubmitting"
                     ></textarea>
                   </div>
 
@@ -240,12 +267,22 @@
                   <div class="pt-4">
                     <button
                       type="submit"
-                      class="group relative w-full overflow-hidden bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-bold py-5 px-8 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] shadow-2xl hover:shadow-teal-500/25 text-lg"
+                      :disabled="isSubmitting"
+                      class="group relative w-full overflow-hidden bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold py-5 px-8 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] disabled:transform-none shadow-2xl hover:shadow-teal-500/25 text-lg disabled:cursor-not-allowed"
                     >
                       <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                       <div class="relative flex items-center justify-center">
-                        <Icon name="heroicons:paper-airplane" class="h-6 w-6 mr-3 group-hover:translate-x-1 transition-transform duration-300" />
-                        Send besked
+                        <Icon 
+                          v-if="!isSubmitting" 
+                          name="heroicons:paper-airplane" 
+                          class="h-6 w-6 mr-3 group-hover:translate-x-1 transition-transform duration-300" 
+                        />
+                        <Icon 
+                          v-if="isSubmitting" 
+                          name="heroicons:arrow-path" 
+                          class="h-6 w-6 mr-3 animate-spin" 
+                        />
+                        {{ isSubmitting ? 'Sender besked...' : 'Send besked' }}
                       </div>
                     </button>
                   </div>
@@ -319,7 +356,60 @@
 useHead({
   title: 'Kontakt Go Mission - Lad os skabe en bedre fremtid sammen',
   meta: [
-    { name: 'description', content: 'Kontakt Go Mission for en uforpligtende samtale om vores digitale velfærdsløsning. Ring på +45 44 12 44 11 eller send en email til info@go-mission.dk' }
+    { name: 'description', content: 'Kontakt Go Mission for en uforpligtende samtale om vores digitale velfærdsløsning. Ring på +45 44 12 44 11 eller send en email til info@go-mission.com' }
   ]
 })
+
+// Form state
+const form = ref({
+  firstName: '',
+  lastName: '',
+  email: '',
+  organization: '',
+  message: ''
+})
+
+const isSubmitting = ref(false)
+const formStatus = ref('') // 'success', 'error', or ''
+const errorMessage = ref('')
+
+// Form submission
+const submitForm = async () => {
+  isSubmitting.value = true
+  formStatus.value = ''
+  errorMessage.value = ''
+
+  try {
+    const { data } = await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value
+    })
+
+    // Success
+    formStatus.value = 'success'
+    
+    // Reset form
+    form.value = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      organization: '',
+      message: ''
+    }
+
+  } catch (error) {
+    // Error handling
+    formStatus.value = 'error'
+    
+    if (error.statusCode === 400) {
+      errorMessage.value = error.data?.message || 'Udfyld venligst alle påkrævede felter korrekt'
+    } else {
+      errorMessage.value = 'Der opstod en teknisk fejl. Prøv igen eller ring til os på +45 44 12 44 11'
+    }
+    
+    console.error('Form submission error:', error)
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script> 

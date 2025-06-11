@@ -93,8 +93,8 @@
                 </div>
                 <div>
                   <p class="font-medium text-white mb-1">Email os</p>
-                  <a href="mailto:info@go-mission.dk" class="text-gray-300 hover:text-white transition-colors">
-                    info@go-mission.dk
+                  <a href="mailto:info@go-mission.com" class="text-gray-300 hover:text-white transition-colors">
+                    info@go-mission.com
                   </a>
                 </div>
               </div>
