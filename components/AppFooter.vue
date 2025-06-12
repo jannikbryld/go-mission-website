@@ -70,8 +70,8 @@
                 </div>
                 <div class="text-gray-300">
                   <p class="font-medium text-white mb-1">Besøg os</p>
-                  <p>Holkebjergvej 106</p>
-                  <p>5250 Odense SV</p>
+                  <p>Svenstrupvej 63</p>
+                  <p>5260 Odense SV</p>
                 </div>
               </div>
               

@@ -165,8 +165,8 @@
                   <div class="space-y-2 text-gray-600">
                     <p class="flex items-center">
                       <Icon name="heroicons:map-pin" class="h-5 w-5 mr-2 text-teal-600" />
-                      Holkebjergvej 106<br>
-                      <span class="ml-7">5250 Odense SV</span>
+                      <span class="ml-7">Svenstrupvej 63</span>
+                      <span class="ml-7">5260 Odense SV</span>
                     </p>
                     <p class="flex items-center">
                       <Icon name="heroicons:phone" class="h-5 w-5 mr-2 text-teal-600" />

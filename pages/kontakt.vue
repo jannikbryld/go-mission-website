@@ -104,8 +104,8 @@
                     <h3 class="font-bold text-xl mb-2 text-gray-900">Besøg os</h3>
                     <p class="text-gray-600 mb-3">Efter aftale</p>
                     <div class="text-lg text-gray-800 font-medium">
-                      <p>Holkebjergvej 106</p>
-                      <p>5250 Odense SV</p>
+                      <p>Svenstrupvej 63</p>
+                      <p>5260 Odense SV</p>
                     </div>
                   </div>
                 </div>
