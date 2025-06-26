@@ -14,12 +14,12 @@ export default defineNuxtConfig({
 
   // Umami Analytics Configuration
   umami: {
-    host: process.env.UMAMI_URL || 'http://umami:3000',
+    host: process.env.UMAMI_URL || 'https://analytics.go-mission.com',
     id: process.env.UMAMI_WEBSITE_ID || '294afaa4-a1b2-4a15-9b65-3bc403d6c173',
     autoTrack: true,
     ignoreLocalhost: false, // Set to true in production
     excludeQueryParams: false,
-    domains: ['go-mission.com', 'localhost'] // Add your domains
+    domains: ['go-mission.com', 'localhost', 'go-mission.dk'] // Add your domains
   },
 
   // SEO and meta configuration
