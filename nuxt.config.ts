@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   // Umami Analytics Configuration
   umami: {
     host: process.env.UMAMI_URL || 'http://umami:3000',
-    id: process.env.UMAMI_WEBSITE_ID || 'your-website-id-here',
+    id: process.env.UMAMI_WEBSITE_ID || '294afaa4-a1b2-4a15-9b65-3bc403d6c173',
     autoTrack: true,
     ignoreLocalhost: false, // Set to true in production
     excludeQueryParams: false,
