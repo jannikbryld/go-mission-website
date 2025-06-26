@@ -39,10 +39,16 @@
 
         <!-- Modern CTA Button -->
         <div class="hidden lg:flex items-center space-x-4">
-          <NuxtLink to="/kontakt" class="btn-primary group">
-            <Icon name="heroicons:phone" class="h-5 w-5 mr-2 group-hover:animate-pulse" />
-            Kontakt os
-          </NuxtLink>
+          <a 
+            href="https://app.go-mission.dk" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative overflow-hidden bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-teal-500/25 flex items-center"
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            <Icon name="heroicons:arrow-right-on-rectangle" class="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+            <span class="relative z-10">Login</span>
+          </a>
         </div>
 
         <!-- Mobile menu button -->
@@ -82,14 +88,17 @@
               </NuxtLink>
             </template>
             <div class="pt-4 mt-4 border-t border-gray-100">
-              <NuxtLink 
-                to="/kontakt" 
-                class="btn-primary w-full text-center group"
+              <a 
+                href="https://app.go-mission.dk" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative overflow-hidden bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 w-full text-center flex items-center justify-center"
                 @click="mobileMenuOpen = false"
               >
-                <Icon name="heroicons:phone" class="h-5 w-5 mr-2 group-hover:animate-pulse" />
-                Kontakt os
-              </NuxtLink>
+                <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <Icon name="heroicons:arrow-right-on-rectangle" class="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                <span class="relative z-10">Login</span>
+              </a>
             </div>
           </div>
         </div>

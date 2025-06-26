@@ -14,6 +14,7 @@ services:
       - NITRO_HOST=0.0.0.0
       - NITRO_PORT=3000
       - DIRECTUS_URL=https://cms.bryld.dev
+      - UMAMI_URL=http://umami:3000
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
@@ -25,6 +26,7 @@ services:
       - go-mission-network
     depends_on:
       - directus
+      - umami
 
   # Directus CMS
   directus:
@@ -60,10 +62,54 @@ services:
     networks:
       - go-mission-network
 
+  # Umami Analytics
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    ports:
+      - "9641:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:umamipass@umami_db:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: umami-secret-key-change-this-in-production
+      CORS_MAX_AGE: 86400
+      CLIENT_IP_HEADER: x-forwarded-for
+    depends_on:
+      umami_db:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/heartbeat || exit 1"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+      interval: 30s
+    networks:
+      - go-mission-network
+
+  # PostgreSQL Database for Umami
+  umami_db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: umamipass
+    volumes:
+      - umami_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+      interval: 30s
+    networks:
+      - go-mission-network
+
 networks:
   go-mission-network:
     driver: bridge
 
 volumes:
   directus_data:
-  directus_database: 
+  directus_database:
+  umami_db_data: 

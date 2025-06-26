@@ -8,8 +8,19 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    'nuxt-umami'
   ],
+
+  // Umami Analytics Configuration
+  umami: {
+    host: process.env.UMAMI_URL || 'http://umami:3000',
+    id: process.env.UMAMI_WEBSITE_ID || 'your-website-id-here',
+    autoTrack: true,
+    ignoreLocalhost: false, // Set to true in production
+    excludeQueryParams: false,
+    domains: ['go-mission.com', 'localhost'] // Add your domains
+  },
 
   // SEO and meta configuration
   app: {

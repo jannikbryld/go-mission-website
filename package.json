@@ -27,6 +27,7 @@
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.3",
     "nuxt": "^3.17.4",
+    "nuxt-umami": "^3.2.0",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
   },
